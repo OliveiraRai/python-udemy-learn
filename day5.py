@@ -1,5 +1,23 @@
 import random
 
+# sum = 0
+# for number in range(1, 101):
+#     sum += number
+
+# print(sum)
+
+# for n in range(0, 100, 3):
+#     print(n)
+
+# for n in range(1, 101):
+#     if n % 3 == 0 and n % 5 == 0:
+#         print("FizzBuzz")
+#     elif n % 5 == 0:
+#         print("Buzz")
+#     elif n % 3 == 0:
+#         print("Fizz")
+#     else:
+#         print(n)
 
 ### base list
 # scores = [136, 134, 85, 138, 151, 76, 158, 128, 78, 186, 122, 156, 166, 81, 125, 142, 177, 93,
@@ -67,53 +85,55 @@ import random
 
 # ### PASSWORD GENERATOR
 # ## variables
-# letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-# numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-# symbols = ["!", "#", "$", "%", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "=", "?", "@", "[", "]", "^", "_", "{", "}", "~"]
-# i = 0
-# password = []
+letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+symbols = ["!", "#", "$", "%", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "=", "?", "@", "[", "]", "^", "_", "{", "}", "~"]
+i = 0
+password = []
 
-# ### program initiation
-# print("Welcome to the non-byPassword Generator")
-# q = int(input("How many characters would you like in your password?\n"))
-# s = int(input("And how many symbols would you like?\n"))
-# n = int(input("And how many number?\n"))
+### program initiation
+print("Welcome to the non-byPassword Generator")
+q = int(input("How many characters would you like in your password?\n"))
+s = int(input("And how many symbols would you like?\n"))
+n = int(input("And how many number?\n"))
 
-# ### final quantity of each calculus
-# q = q - s - n
+### final quantity of each calculus
+q = q - s - n
 
-# ### character randomizer for each
-# ## letters
-# while i < q:
-#     rand = random.randint(0, len(letters) - 1)
-#     letter = letters[rand]
-#     password.append(letter)
+### character randomizer for each
+## letters
+while i < q:
+    rand = random.randint(0, len(letters) - 1)
+    letter = letters[rand]
+    password.append(letter)
 
-#     # auto-increment
-#     i += 1
+    # auto-increment
+    i += 1
 
-# i = 0
+i = 0
 
-# ## symbols
-# while i < s:
-#     rand = random.randint(0, len(symbols) - 1)
-#     symbol = symbols[rand]
-#     password.append(symbol)
+## symbols
+while i < s:
+    rand = random.randint(0, len(symbols) - 1)
+    symbol = symbols[rand]
+    password.append(symbol)
 
-#     i += 1
+    i += 1
 
-# i = 0
+i = 0
 
-# ## numbers
-# while i < n:
-#     rand = random.randint(0, len(numbers) - 1)
-#     number = numbers[rand]
-#     password.append(number)
+## numbers
+while i < n:
+    rand = random.randint(0, len(numbers) - 1)
+    number = numbers[rand]
+    password.append(number)
 
-#     i += 1 
+    i += 1 
 
-# ### shuffling
-# random.shuffle(password)
-# result = "".join(password)
+### shuffling
+random.shuffle(password)
+result = "".join(password)
 
-# print(f"Your password: {result}")
+print(f"Your password: {result}")
+
+## could've used random.choice() instead of using 3 lines of code
