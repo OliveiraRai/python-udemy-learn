@@ -15,12 +15,11 @@ isWord_guessed = False
 
 life = 6
 
-# isalpha() checks if variable value is a "a-Z" range 
 while isWord_guessed == False:
     print(f"Life: {life}")
     print(f"Letters guessed: {letters_guessed}")
     print(list_of_blanks)
-    # isalpha verifies if variable is a letter or not
+    # isalpha() verifies if variable is a letter or not
     while not guess.isalpha():
         # lower() changes uppercase to lowercase
         guess = input("Guess a letter: ").lower()
