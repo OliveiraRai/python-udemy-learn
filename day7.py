@@ -6,6 +6,7 @@ chosen_word = random.choice(word_list)
 # list() here transforms string into a list dividing it by characters
 word = list(chosen_word)
 blank = "_"
+# for the amount of letter in chosen word it adds the blank variable
 list_of_blanks = [blank for letters in chosen_word]
 
 guess = ""
@@ -36,7 +37,7 @@ while isWord_guessed == False:
         life -= 1
 
     if life == 0:
-        print("The poor guy was hanged up because of your imcompetence :(")
+        print("The poor guy was hanged because of your imcompetence :(")
         break
 
     count = 0
