@@ -84,3 +84,8 @@ def caesar_cypher():
         print("Please, choose a valid option.")
 
 caesar_cypher()
+
+## precisa melhorar 
+## - validação 
+## - correção de bug (listar estourar por shift number alto)
+##   - norte: alguma forma de, ao passar o len(lista), ele dar a volta na lista
