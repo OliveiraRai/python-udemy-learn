@@ -1,0 +1,1 @@
+Lógica simples, mas que mostra fundamentos da programação e um padrão que será muito usado em todos os códigos daqui pra frente.
