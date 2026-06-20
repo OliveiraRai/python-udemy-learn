@@ -48,3 +48,14 @@
     
 # calculate_love_score("Jessica Brier", "John Ferrier")
 
+lowercase_letters = ["a", "b", "c", "d", "e", "f", "g", "h", 
+                     "i", "j", "k", "l", "m", "n", "o", "p", 
+                     "q","r", "s", "t", "u", "v", "w", "x", 
+                     "y", "z"]
+
+letter = input("fala uma letra ai campeão kk\n  ")
+shift = int(input("fala um numero ai paizao kk\n  "))
+
+new_letter = lowercase_letters.index(letter) + shift
+if (lowercase_letters.index(letter) + shift) > len(lowercase_letters):
+    print(f"a nova letra é {lowercase_letters[new_letter]}")

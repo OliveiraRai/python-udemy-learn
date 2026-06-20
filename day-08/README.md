@@ -18,4 +18,5 @@ Outros aprendizados:
             # Se fosse ",".join(minha_lista) retornaria Hello,World
 - *Positional argument* vs *Keyword argument*
 - Uso do módulo *index()* para encontrar o index em uma lista do qual você já tem o valor existente "em mãos"
-
+- Blocos Try-Except para tratar erros sem acabar com o fluxo do programa.
+- Uso do módulo type() para tratar e validar dados.
