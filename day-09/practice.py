@@ -58,7 +58,10 @@
 # }
 
 # print(travel_log["Germany"]["cities_visited"][0])
-
+fruits = {"apple": 4, "peach": 5, "melon": 10}
+x = max(fruits, key=fruits.get)
+print(x)
+### This code got me the key of the highest dictionary value.
 
 
 
