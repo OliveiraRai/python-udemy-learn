@@ -1,9 +1,17 @@
 ### Secret Auction 
+def find_highest_bid(dictionary):
+    winner = ""
+    best_bid = 0
+    print("")
+    for key in dict:
+        if dict[key] > best_bid:
+            best_bid = dict[key]
+            winner = key
+    print(f"{winner} won! The bid was ${best_bid}.")
+
 print("Welcome to the Secret Auction program.")
 isMore_bidders = True
 dict = {}
-winner = ""
-best_bid = 0
 while isMore_bidders == True:
     name = input("What is your name? ")
     while True:
@@ -27,11 +35,6 @@ while isMore_bidders == True:
         print("\n" * 25)
         continue
     elif question == 'no':
-        print("")
-        for key in dict:
-            if dict[key] > best_bid:
-                best_bid = dict[key]
-                winner = key
-        print(f"{winner} won! The bid was ${best_bid}.")
+        find_highest_bid(dictionary=dict)
         isMore_bidders = False
             
