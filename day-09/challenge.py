@@ -33,8 +33,6 @@ while isMore_bidders == True:
             print("")
     if question == 'yes':
         print("\n" * 25)
-        continue
     elif question == 'no':
         find_highest_bid(dictionary=dict)
         isMore_bidders = False
-            
