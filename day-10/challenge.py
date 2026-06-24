@@ -41,8 +41,7 @@ while True:
     while will_continue == "y":
         while True:
             operator_choice = input("Choose one between the four operations:\n  +\n  -\n  *\n  /\nChoice: ")
-            # Isso é ótimo e é melhor eu me lembrar disso.
-            if operator_choice not in ("+", "-", "*", "/"):
+            if operator_choice not in operations:
                 print("Please, enter a valid operation.")
                 print("")
                 continue
