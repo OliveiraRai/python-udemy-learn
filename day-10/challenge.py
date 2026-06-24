@@ -31,10 +31,30 @@ operations = {
 print("Welcome to the best calculator out there.")
 while True:
     will_continue = "y"
-    n1 = int(input("Enter a number: "))
+    while True:
+        try:
+            n1 = int(input("Enter a number: "))
+            break
+        except ValueError:
+            print("Please, enter a valid number.")
+            print("")
     while will_continue == "y":
-        operator_choice = input("Choose one between the four operations:\n  +\n  -\n  *\n  /\nChoice: ")
-        n2 = int(input("Enter another number: "))
+        while True:
+            operator_choice = input("Choose one between the four operations:\n  +\n  -\n  *\n  /\nChoice: ")
+            # Isso é ótimo e é melhor eu me lembrar disso.
+            if operator_choice not in ("+", "-", "*", "/"):
+                print("Please, enter a valid operation.")
+                print("")
+                continue
+            else:
+                break
+        while True:
+            try:
+                n2 = int(input("Enter another number: "))
+                break
+            except ValueError:
+                print("Please, enter a valid number.")
+                print("")
         if n2 == 0: # Isso virou uma validação sem querer haha
             print(f"The calculation between {n1} and 0 is undefined.")
             continue
