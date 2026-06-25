@@ -1,11 +1,22 @@
 import random
 
 cards = [11,2,3,4,5,6,7,8,9,10,10,10,10]
-wanna_play = False
 
 def blackjack():
     choice = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
     if choice == 'y':
+        print("\n" * 20)
+        blackjack_art = r"""
+         _     _            _    _            _    
+        | |   | |          | |  (_)          | |   
+        | |__ | | __ _  ___| | ___  __ _  ___| | __
+        | '_ \| |/ _` |/ __| |/ / |/ _` |/ __| |/ /
+        | |_) | | (_| | (__|   <| | (_| | (__|   < 
+        |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
+                               _/ |                
+                              |__/ 
+        """
+        print(blackjack_art)
         p_hand = random.sample(cards, 2)
         c_hand = random.sample(cards, 2)
         p_score = sum(p_hand)
@@ -54,5 +65,10 @@ def blackjack():
                     blackjack()
             else: 
                 print("Please, choose a valid option.")
+    elif choice == 'n':
+        print("  Come back any time.")
+    else: 
+        print("Please, choose a valid option.")
+        blackjack()
     
 blackjack()
