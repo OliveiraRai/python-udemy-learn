@@ -11,4 +11,6 @@ Onde a máquina ira escolher um numéro aleatório dentro de um range, e o jogad
 - assim como o dia anterior, é bom usar uma função *menu()* para cuidar do loop
 - uma função *guess_number()* que guardará a lógica inteira do jogo. 
 - uso de *arte em ascii* para personalidade e vida.
-    
+- função *setAttempts()* para escolher a quantidade de tentativas com base na dificuldade escolhida.
+- função *setNumber()* para escolher um número no range de 1 a 100 _(range(1,101))_
+- uso de variáveis globais para guardar a quantidade de tentivas por dificuldade
