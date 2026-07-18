@@ -33,7 +33,7 @@ resources = {
 
 COIN_VALUE = {
     "penny": 0.01,
-    "nickle": 0.05,
+    "nickel": 0.05,
     "dime": 0.10,
     "quarter": 0.25,
 }
@@ -72,17 +72,14 @@ def CoffeeMachine():
         print("Please, insert coins.")
         quarter = int(input("How many quarters? "))
         dime = int(input("How many dimes? "))
-        nickle = int(input("How many nickles? "))
-        penny = int(input("How many nickles? "))
-        total = (COIN_VALUE["penny"] * penny) + (COIN_VALUE["nickle"] * nickle) + (COIN_VALUE["dime"] * dime) + (COIN_VALUE["quarter"] * quarter)
+        nickel = int(input("How many nickels? "))
+        penny = int(input("How many pennies? "))
+        total = (COIN_VALUE["penny"] * penny) + (COIN_VALUE["nickel"] * nickel) + (COIN_VALUE["dime"] * dime) + (COIN_VALUE["quarter"] * quarter)
 
         # verificar se pagamento é maior ou igual ao preço > se sim, aceitar e prosseguir > se não, recusar e retornar o dinheiro
         if total >= MENU[choice]["cost"]:
             for ingredient in MENU[choice]["ingredients"]:
-                for resource in resources:
-                    if resource == ingredient:
-                        resources[resource] -= MENU[choice]["ingredients"][ingredient]
-                        continue
+                resources[ingredient] -= MENU[choice]["ingredients"][ingredient]
             resources["Money"] += total
             if total > MENU[choice]["cost"]:
                 change = total - MENU[choice]["cost"]
@@ -90,6 +87,6 @@ def CoffeeMachine():
                 print(f"Here is ${change} in change.")
             print(f"Here is your {choice}. Enjoy!")
         else:
-            print("what a cheap-ass dude damn")
+            print("Sorry, that's not enough money. Money refunded.")
 
 CoffeeMachine()
