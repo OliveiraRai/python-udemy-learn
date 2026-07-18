@@ -28,6 +28,14 @@ resources = {
     "water": 300,
     "milk": 200,
     "coffee": 100,
+    "money": 0,
+}
+
+COIN_VALUE = {
+    "penny": 0.01,
+    "nickle": 0.05,
+    "dime": 0.10,
+    "quarter": 0.25,
 }
 
 # pegar input
@@ -39,11 +47,22 @@ for ingredient in MENU[choice]["ingredients"]:
         print("Sorry, there is not enough ingredients")
         break
 
-# cobrar
+# cobrar e dar o troco se necessário
 print("Please, insert coins.")
 quarter = int(input("How many quarters? "))
 dime = int(input("How many dimes? "))
 nickle = int(input("How many nickles? "))
 penny = int(input("How many nickles? "))
+total = (COIN_VALUE["penny"] * penny) + (COIN_VALUE["nickle"] * nickle) + (COIN_VALUE["dime"] * dime) + (COIN_VALUE["quarter"] * quarter)
 
 # verificar se pagamento é maior ou igual ao preço > se sim, aceitar e prosseguir > se não, recusar e retornar o dinheiro
+if total >= MENU[choice]["cost"]:
+    resources["money"] += total
+    if total > MENU[choice]["cost"]:
+        change = total - MENU[choice]["cost"]
+        resources["money"] - change
+        print(f"Here is ${change} in change.")
+    print(f"Here is your {choice}. Enjoy!")
+else:
+    print("what a cheap-ass dude damn")
+
