@@ -1,4 +1,4 @@
-from menu import resources
+from menu import resources, MenuItem
 
 class CoffeeMaker:
     def report():
@@ -11,8 +11,8 @@ class CoffeeMaker:
                 case "Coffee":
                     print(f"{resource}: {resources[resource]}g")    
 
-    def is_resource_sufficient():
+    def is_resource_sufficient(drink: MenuItem):
         pass # TODO
 
-    def make_coffee():
+    def make_coffee(order: MenuItem):
         pass # TODO

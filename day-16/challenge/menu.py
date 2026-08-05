@@ -31,16 +31,22 @@ resources = {
     "Money": 0,
 }
 
-COIN_VALUE = {
-    "penny": 0.01,
-    "nickel": 0.05,
-    "dime": 0.10,
-    "quarter": 0.25,
-}
-
-
 class MenuItem:
-    pass # TODO
-
+    def __init__(self, name: str, cost: float, ingredients: dict[str]):
+        self.name = name
+        self.cost = cost
+        self.ingredients = dict(ingredients)
+        
 class Menu:
-    pass # TODO
+    def get_items():
+        i = 0
+        for item in MENU:
+            i += 1
+            print(f"{i}. {item}")
+
+    def find_drink(order_name: str):
+        if order_name in MENU:
+            return MenuItem(order_name, MENU[order_name]["cost"], MENU[order_name]["ingredients"])
+        else:
+            return None
+            
