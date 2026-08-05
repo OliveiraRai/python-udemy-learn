@@ -21,7 +21,7 @@ MENU = {
             "Coffee": 24,
         },
         "cost": 3.0,
-    }
+    },
 }
 
 resources = {
@@ -42,11 +42,10 @@ class Menu:
         i = 0
         for item in MENU:
             i += 1
-            print(f"{i}. {item}")
+            print(f"{i}. {item.capitalize()}")
 
     def find_drink(order_name: str):
         if order_name in MENU:
             return MenuItem(order_name, MENU[order_name]["cost"], MENU[order_name]["ingredients"])
         else:
             return None
-            
