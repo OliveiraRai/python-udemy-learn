@@ -10,7 +10,9 @@ class MoneyMachine:
         dime = float(input("How many dimes? "))
         quarter = float(input("How many quarters? "))
         payment = (penny * 0.01) + (nickel * 0.05) + (dime * 0.10) + (quarter * 0.25)
-        if payment >= cost:
-            return True
+        if payment > cost:
+            change = payment - cost
+            resources['Money'] += (payment - change)
+            return True, change
         else:
-            return False
+            return False, None

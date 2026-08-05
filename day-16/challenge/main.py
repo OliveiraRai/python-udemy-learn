@@ -18,11 +18,26 @@ def coffeeMachine():
                 handleCoffee.report()
                 utils.wait()
                 continue
-            case str() if not choice.isdigit():
+            case "profit":
+                utils.clear()
+                handleMoney.report()
+                utils.wait()
+                continue
+            case str() if choice.isdigit():
                 utils.message()
                 continue
-            case "1" | "2" | "3":
-                pass # TODO
+            case "espresso" | "latte" | "cappuccino":
+                utils.clear()
+                order = handleMenu.find_drink(choice)
+                if not handleCoffee.is_resource_sufficient(order):
+                    utils.customMessage("Insufficient resources.")
+                    continue
+                is_money_accepted, change = handleMoney.make_payment(order.cost)
+                if not is_money_accepted:
+                    utils.customMessage("Insufficient money.")
+                    continue
+                handleCoffee.make_coffee(order)
+                utils.customMessage(f"Here is your {choice} and you ${change} change. Enjoy!")
             case _:
                 utils.message()
         
