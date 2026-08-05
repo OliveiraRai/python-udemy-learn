@@ -18,5 +18,7 @@ class CoffeeMaker:
         return True
 
     def make_coffee(order: menu.MenuItem):
-        pass # TODO
+        for ingredient in order.ingredients:
+            menu.resources[ingredient] -= order.ingredients[ingredient]
+
 
