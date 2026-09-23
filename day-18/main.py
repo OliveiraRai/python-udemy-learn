@@ -1,6 +1,6 @@
 from turtle import Turtle, Screen
 import math
-from random import choice
+from random import choice, randint
 
 t = Turtle()
 screen = Screen()
@@ -63,16 +63,16 @@ screen.setup(width=800, height=600)
 # side = 100
 # t.teleport(x=-50,y=200)
 # color_index = 0
-colors = [
-    "black",
-    "cornflowerblue", 
-    "forestgreen", 
-    "orchid", 
-    "tomato", 
-    "gold", 
-    "darkorchid", 
-    "darkorange",
-]
+# colors = [
+#     "black",
+#     "cornflowerblue", 
+#     "forestgreen", 
+#     "orchid", 
+#     "tomato", 
+#     "gold", 
+#     "darkorchid", 
+#     "darkorange",
+# ]
 
 # for _ in range(8):
 #     t.color(colors[color_index])
@@ -86,17 +86,26 @@ colors = [
 ### RANDOM WALK ALGORITHM
 
 ## configuration
-# t.speed(7)
-# t.hideturtle()
-# t.pensize(10)
+t.speed(7)
+t.hideturtle()
+t.pensize(10)
+screen.colormode(255)
+
+# random color generator
+def random_color():
+    r = randint(0, 255)
+    g = randint(0, 255)
+    b = randint(0, 255)
+    rgb = (r, g, b)
+    return rgb
 
 ## variables
-# directions = [0, 90, 180, 270]
+directions = [0, 90, 180, 270]
 
 ## logic
-# for _ in range(100):
-#     t.color(choice(colors))
-#     t.setheading(choice(directions))
-#     t.forward(25)
+for _ in range(100):
+    t.pencolor(random_color())
+    t.setheading(choice(directions))
+    t.forward(25)
 
 screen.exitonclick()
