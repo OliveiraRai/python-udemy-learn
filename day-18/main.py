@@ -1,10 +1,12 @@
-from turtle import Turtle, Screen
-import math
+from turtle import Turtle, Screen, tracer, update
 from random import choice, randint
+import math, time, colorgram
 
 t = Turtle()
+t.hideturtle()
 screen = Screen()
 screen.setup(width=800, height=600)
+screen.colormode(255)
 
 ### DRAWS SQUARE AND THEN CUTS THROUGH BOTH DIAGONALS USING SOME MATH
 
@@ -86,26 +88,63 @@ screen.setup(width=800, height=600)
 ### RANDOM WALK ALGORITHM
 
 ## configuration
-t.speed(7)
-t.hideturtle()
-t.pensize(10)
-screen.colormode(255)
+# t.speed("fastest")
+# t.hideturtle()
+# t.pensize(10)
 
 # random color generator
-def random_color():
-    r = randint(0, 255)
-    g = randint(0, 255)
-    b = randint(0, 255)
-    rgb = (r, g, b)
-    return rgb
+# def random_color():
+#     r = randint(0, 255)
+#     g = randint(0, 255)
+#     b = randint(0, 255)
+#     rgb = (r, g, b)
+#     return rgb
 
-## variables
-directions = [0, 90, 180, 270]
+# ## variables
+# directions = [0, 90, 180, 270]
 
 ## logic
-for _ in range(100):
-    t.pencolor(random_color())
-    t.setheading(choice(directions))
-    t.forward(25)
+# for _ in range(100):
+#     t.pencolor(random_color())
+#     t.setheading(choice(directions))
+#     t.forward(25)
+
+# tracer(0, 0)
+
+# sides = 30
+# for _ in range(sides):
+#     t.circle(50, 360)
+#     update()
+#     t.left(360 / sides)
+#     time.sleep(0.1)
+    
+#     t.pencolor(random_color())
+    
+
+# colors = colorgram.extract("./assets/image.jpg", 5)
+
+# def generate_color_palette(colors):
+#     color_palette = []
+#     for color in colors:
+#         rgb = color.rgb
+#         color_palette.append((rgb.r, rgb.g, rgb.b))
+#     return color_palette
+
+# color_palette = generate_color_palette(colors)
+
+t.pensize(10)
+t.pu()
+t.goto((50, 50))
+t.pd()
+
+
+
+# # adjust y-axis
+# for i in range():
+#     # adjust x-axis
+#     for j in range():
+
+
+
 
 screen.exitonclick()
