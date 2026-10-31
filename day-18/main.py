@@ -132,19 +132,24 @@ screen.colormode(255)
 
 # color_palette = generate_color_palette(colors)
 
-t.pensize(10)
-t.pu()
-t.goto((50, 50))
-t.pd()
+# print(color_palette)
 
+color_list = [(229, 228, 226), (225, 223, 224), (199, 175, 117), (125, 36, 24), (187, 158, 51)]
 
+t.pensize(15)
+dots = 10
+y = -200
+space_between = 50
 
-# # adjust y-axis
-# for i in range():
-#     # adjust x-axis
-#     for j in range():
-
-
-
-
+for _ in range(dots):
+    t.pu()
+    t.goto(200, y)
+    for _ in range(dots):
+        t.pencolor(choice(color_list))
+        t.pd()
+        t.dot()
+        t.up()
+        t.forward(-space_between)
+    y += space_between
+    
 screen.exitonclick()
