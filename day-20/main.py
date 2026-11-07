@@ -9,13 +9,13 @@ screen.listen()
 segments = [] 
 distance = 21
 new_direction = "right"
-last_direction = new_direction
+last_direction = ""
 turn_coordinates = []
 wasKeyPressed = False
 screen.title("Snake Game")
 
 # Tecnically creates pieces that will be used
-for _ in range(3):
+for _ in range(7):
     new_segment = Turtle()
     new_segment.shape("square")
     new_segment.penup()
@@ -33,39 +33,51 @@ def goUp():
     global new_direction, turn_coordinates, last_direction
     if last_direction == "up":
         return
+    elif new_direction == "down":
+        return
     else:
+        last_direction = new_direction
         new_direction = "up"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        # print(turn_coordinates)
+        print(last_direction)
     
 def goDown():
     global new_direction, turn_coordinates, last_direction
     if last_direction == "down":
         return
+    elif new_direction == "up":
+        return
     else:
+        last_direction = new_direction
         new_direction = "down"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        # print(turn_coordinates)
+        print(last_direction)
     
 def goLeft():
     global new_direction, turn_coordinates, last_direction
     if last_direction == "left":
         return
+    elif new_direction == "right":
+        return
     else:
+        last_direction = new_direction
         new_direction = "left"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        # print(turn_coordinates)
+        print(last_direction)
     
 def goRight():
     global new_direction, turn_coordinates, last_direction
     if last_direction == "right":
         return
+    elif new_direction == "left":
+        return
     else:
+        last_direction = new_direction
         new_direction = "right"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        # print(turn_coordinates)
+        print(last_direction)
     
-## SNAKE MOVEMENT
+## SNAKE MOVEMENT - DONE
 ## mover para direita não está funcionando.
 ## os testes apontam que last_direction nunca muda de valor e continua sendo "right"
 game_is_on = True
@@ -96,18 +108,17 @@ while game_is_on:
                     segment.setposition((segment.xcor() + distance, segment.ycor()))
                     
         else:
-            print(last_direction)
+            # print(last_direction)
             new_position = segment.pos()  
             segment.setposition(last_position)
             last_position = new_position
-            print(last_direction)
+            # print(last_direction)
             
     turn_coordinates = []
             
     screen.update()
     time.sleep(0.25)
     
-
 ## FOOD GENERATION 
 ## SNAKE INTERACION WITH FOOD
 ## FOOD LOCATION RANDOMIZATION
