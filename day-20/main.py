@@ -31,7 +31,7 @@ screen.update()
 
 def goUp():
     global new_direction, turn_coordinates, last_direction
-    if last_direction == "up":
+    if last_direction and new_direction == "up":
         return
     elif new_direction == "down":
         return
@@ -43,7 +43,7 @@ def goUp():
     
 def goDown():
     global new_direction, turn_coordinates, last_direction
-    if last_direction == "down":
+    if last_direction and new_direction == "down":
         return
     elif new_direction == "up":
         return
@@ -55,7 +55,7 @@ def goDown():
     
 def goLeft():
     global new_direction, turn_coordinates, last_direction
-    if last_direction == "left":
+    if last_direction and new_direction == "left":
         return
     elif new_direction == "right":
         return
@@ -67,7 +67,7 @@ def goLeft():
     
 def goRight():
     global new_direction, turn_coordinates, last_direction
-    if last_direction == "right":
+    if last_direction and new_direction == "right":
         return
     elif new_direction == "left":
         return
@@ -108,11 +108,9 @@ while game_is_on:
                     segment.setposition((segment.xcor() + distance, segment.ycor()))
                     
         else:
-            # print(last_direction)
             new_position = segment.pos()  
             segment.setposition(last_position)
             last_position = new_position
-            # print(last_direction)
             
     turn_coordinates = []
             
