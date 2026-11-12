@@ -1,5 +1,5 @@
 from turtle import Turtle, Screen
-import time
+import time, random
 
 screen = Screen()
 screen.setup(width=600,height=600)
@@ -39,7 +39,7 @@ def goUp():
         last_direction = new_direction
         new_direction = "up"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        print(last_direction)
+        # print(last_direction)
     
 def goDown():
     global new_direction, turn_coordinates, last_direction
@@ -51,7 +51,7 @@ def goDown():
         last_direction = new_direction
         new_direction = "down"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        print(last_direction)
+        # print(last_direction)
     
 def goLeft():
     global new_direction, turn_coordinates, last_direction
@@ -63,7 +63,7 @@ def goLeft():
         last_direction = new_direction
         new_direction = "left"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        print(last_direction)
+        # print(last_direction)
     
 def goRight():
     global new_direction, turn_coordinates, last_direction
@@ -75,14 +75,37 @@ def goRight():
         last_direction = new_direction
         new_direction = "right"
         turn_coordinates.append({new_direction: segments[0].pos()})
-        print(last_direction)
+        # print(last_direction)
     
 ## SNAKE MOVEMENT - DONE
 ## mover para direita não está funcionando.
 ## os testes apontam que last_direction nunca muda de valor e continua sendo "right"
 game_is_on = True
 
+## FOOD GENERATION (loop)
+def generate_food():
+    # criar objeto turtle 'food'
+    food = Turtle()
+    food.shape("square")
+    food.color("red")
+    food.shapesize(stretch_len=0.5,stretch_wid=0.5,outline=1)
+    food.penup()
+
+    # randomizar localização de 'food'
+    random_x = random.randint(a=-280, b=280)
+    random_y = random.randint(a=-280, b=280)
+    random_location = (random_x, random_y)
+    food.setposition(random_location)
+
+was_food_created = False
 while game_is_on:
+    if was_food_created:
+        s_head_pos = segments[0].pos()
+        
+    else:
+        generate_food()
+        was_food_created = True
+        
     # atualiza valor de new_direction e salva a ultima direção em last_direction
     # também salva as coordenadas da ultima mudança de new_direction
     screen.onkeypress(goUp, "w")
@@ -117,7 +140,7 @@ while game_is_on:
     screen.update()
     time.sleep(0.25)
     
-## FOOD GENERATION 
+
 ## SNAKE INTERACION WITH FOOD
 ## FOOD LOCATION RANDOMIZATION
 ## COLLISION WITH WALLS
