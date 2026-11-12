@@ -15,6 +15,7 @@ turn_coordinates = []
 wasKeyPressed = False
 screen.title("Snake Game")
 
+# SNAKE
 class Snake():
     def __init__(self, starting_length=3):
         self.segments = []
@@ -34,6 +35,7 @@ class Snake():
         
 snake = Snake()
 
+# FOOD
 class Food(Turtle):
     def __init__(self):
         super().__init__()
@@ -54,7 +56,7 @@ class Food(Turtle):
             return True
         return False
 
-## FUNCTIONS
+# MOVEMENT FUNCTIONS
 
 def goUp():
     global new_direction, turn_coordinates, last_direction
@@ -66,7 +68,6 @@ def goUp():
         last_direction = new_direction
         new_direction = "up"
         turn_coordinates.append({new_direction: snake.segments[0].pos()})
-        # print(last_direction)
     
 def goDown():
     global new_direction, turn_coordinates, last_direction
@@ -78,7 +79,6 @@ def goDown():
         last_direction = new_direction
         new_direction = "down"
         turn_coordinates.append({new_direction: snake.segments[0].pos()})
-        # print(last_direction)
     
 def goLeft():
     global new_direction, turn_coordinates, last_direction
@@ -90,7 +90,6 @@ def goLeft():
         last_direction = new_direction
         new_direction = "left"
         turn_coordinates.append({new_direction: snake.segments[0].pos()})
-        # print(last_direction)
     
 def goRight():
     global new_direction, turn_coordinates, last_direction
@@ -102,12 +101,17 @@ def goRight():
         last_direction = new_direction
         new_direction = "right"
         turn_coordinates.append({new_direction: snake.segments[0].pos()})
-        # print(last_direction)
     
-game_is_on = True
+# GAME
+game_over = False
 
 was_food_created = False
-while game_is_on:
+while not game_over:
+    if snake.segments[0].xcor() > 255 or snake.segments[0].xcor() < -255:
+        game_over = True
+    elif snake.segments[0].ycor() > 255 or snake.segments[0].ycor() < -255:
+        game_over = True
+    
     if not was_food_created:
         food = Food().location_randomizer()
         was_food_created = True
@@ -151,10 +155,6 @@ while game_is_on:
     screen.update()
     time.sleep(0.25)
     
-
-## SNAKE INTERACION WITH FOOD
-## FOOD LOCATION RANDOMIZATION
-## COLLISION WITH WALLS
-## COLLISION WITH SNAKE'S OWN BODY
+## COLLISION WITH SNAKE'S OWN BODY (HARDER)
 
 screen.exitonclick()
