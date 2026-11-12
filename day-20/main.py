@@ -154,7 +154,10 @@ while not game_over:
             
     screen.update()
     time.sleep(0.25)
-    
-## COLLISION WITH SNAKE'S OWN BODY (HARDER)
+
+## COLLISION WITH SNAKE'S OWN BODY 
+sys = Turtle()
+sys.write("GAME OVER", align="center", font=("Arial", 24, "bold"))    
+
 
 screen.exitonclick()
