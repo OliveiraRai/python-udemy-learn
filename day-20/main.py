@@ -1,12 +1,13 @@
 from turtle import Turtle, Screen
 import time, random
 
+global segments
+
 screen = Screen()
 screen.setup(width=600,height=600)
 screen.tracer(0)
 screen.listen()
 
-segments = [] 
 distance = 21
 new_direction = "right"
 last_direction = ""
@@ -14,18 +15,44 @@ turn_coordinates = []
 wasKeyPressed = False
 screen.title("Snake Game")
 
-# Tecnically creates pieces that will be used
-for _ in range(7):
-    new_segment = Turtle()
-    new_segment.shape("square")
-    new_segment.penup()
-    segments.append(new_segment)
+class Snake():
+    def __init__(self, starting_length=3):
+        self.segments = []
+        super().__init__()
+        for _ in range(starting_length):
+            new_segment = Turtle("square")
+            new_segment.penup()
+            self.segments.append(new_segment)
+        for id, segment in enumerate(self.segments):
+            segment.setposition((segment.xcor() - (id * distance), 0))
+        screen.update()
+        
+    def add_snake_segment(self):
+        new_segment = Turtle("square")
+        new_segment.penup()
+        self.segments.append(new_segment)
+        
+snake = Snake()
 
-# Creates the snake's body
-for id, segment in enumerate(segments):
-    segment.setposition((segment.xcor() - (id * distance), 0))
+class Food(Turtle):
+    def __init__(self):
+        super().__init__()
+        self.shape("square")
+        self.color("red")
+        self.shapesize(stretch_len=0.5,stretch_wid=0.5,outline=1)
+        self.penup()
+        
+    def location_randomizer(self):
+        random_x = random.randint(a=-280, b=280)
+        random_y = random.randint(a=-280, b=280)
+        random_location = (random_x, random_y)
+        self.setposition(random_location)
+        return self
     
-screen.update()
+    def collision_verifier(self, t1, t2, distance=13):
+        if t1.distance(t2) < distance * 2:
+            return True
+        return False
 
 ## FUNCTIONS
 
@@ -38,7 +65,7 @@ def goUp():
     else:
         last_direction = new_direction
         new_direction = "up"
-        turn_coordinates.append({new_direction: segments[0].pos()})
+        turn_coordinates.append({new_direction: snake.segments[0].pos()})
         # print(last_direction)
     
 def goDown():
@@ -50,7 +77,7 @@ def goDown():
     else:
         last_direction = new_direction
         new_direction = "down"
-        turn_coordinates.append({new_direction: segments[0].pos()})
+        turn_coordinates.append({new_direction: snake.segments[0].pos()})
         # print(last_direction)
     
 def goLeft():
@@ -62,7 +89,7 @@ def goLeft():
     else:
         last_direction = new_direction
         new_direction = "left"
-        turn_coordinates.append({new_direction: segments[0].pos()})
+        turn_coordinates.append({new_direction: snake.segments[0].pos()})
         # print(last_direction)
     
 def goRight():
@@ -74,49 +101,33 @@ def goRight():
     else:
         last_direction = new_direction
         new_direction = "right"
-        turn_coordinates.append({new_direction: segments[0].pos()})
+        turn_coordinates.append({new_direction: snake.segments[0].pos()})
         # print(last_direction)
     
-## SNAKE MOVEMENT - DONE
-## mover para direita não está funcionando.
-## os testes apontam que last_direction nunca muda de valor e continua sendo "right"
 game_is_on = True
-
-## FOOD GENERATION (loop)
-def generate_food():
-    # criar objeto turtle 'food'
-    food = Turtle()
-    food.shape("square")
-    food.color("red")
-    food.shapesize(stretch_len=0.5,stretch_wid=0.5,outline=1)
-    food.penup()
-
-    # randomizar localização de 'food'
-    random_x = random.randint(a=-280, b=280)
-    random_y = random.randint(a=-280, b=280)
-    random_location = (random_x, random_y)
-    food.setposition(random_location)
 
 was_food_created = False
 while game_is_on:
-    if was_food_created:
-        s_head_pos = segments[0].pos()
-        
-    else:
-        generate_food()
+    if not was_food_created:
+        food = Food().location_randomizer()
         was_food_created = True
+    else:
+        s_head = snake.segments[0]
+        if food.collision_verifier(s_head, food):
+            # remove food
+            food.location_randomizer()
+            # adiciona +1 turtle
+            snake.add_snake_segment()
         
-    # atualiza valor de new_direction e salva a ultima direção em last_direction
-    # também salva as coordenadas da ultima mudança de new_direction
     screen.onkeypress(goUp, "w")
     screen.onkeypress(goLeft, "a")
     screen.onkeypress(goDown, "s")
     screen.onkeypress(goRight, "d")
     
-    turn_coordinates.append({new_direction: segments[0].pos()})
+    turn_coordinates.append({new_direction: snake.segments[0].pos()})
     last_position = turn_coordinates[-1][new_direction]
     
-    for segment in segments:
+    for segment in snake.segments:
         
         if segment.pos() == last_position:
             
