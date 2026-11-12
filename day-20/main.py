@@ -1,12 +1,14 @@
 from turtle import Turtle, Screen
 import time, random
 
-global segments
+# SETUP
 
 screen = Screen()
 screen.setup(width=600,height=600)
 screen.tracer(0)
 screen.listen()
+
+# VARIABLES
 
 distance = 21
 new_direction = "right"
@@ -16,6 +18,7 @@ wasKeyPressed = False
 screen.title("Snake Game")
 
 # SNAKE
+
 class Snake():
     def __init__(self, starting_length=3):
         self.segments = []
@@ -33,9 +36,18 @@ class Snake():
         new_segment.penup()
         self.segments.append(new_segment)
         
+    def collision_verifier(self):
+        for i, head in enumerate(self.segments):
+            for body in self.segments[i+1:]:
+                if head.distance(body) < 20:
+                    return True
+            return False
+            
+        
 snake = Snake()
 
 # FOOD
+
 class Food(Turtle):
     def __init__(self):
         super().__init__()
@@ -51,8 +63,8 @@ class Food(Turtle):
         self.setposition(random_location)
         return self
     
-    def collision_verifier(self, t1, t2, distance=13):
-        if t1.distance(t2) < distance * 2:
+    def collision_verifier(self, t1, t2, distance=distance):
+        if t1.distance(t2) < distance:
             return True
         return False
 
@@ -103,13 +115,16 @@ def goRight():
         turn_coordinates.append({new_direction: snake.segments[0].pos()})
     
 # GAME
-game_over = False
 
+game_over = False
 was_food_created = False
 while not game_over:
-    if snake.segments[0].xcor() > 255 or snake.segments[0].xcor() < -255:
+    if snake.segments[0].xcor() > 280 or snake.segments[0].xcor() < -280:
         game_over = True
-    elif snake.segments[0].ycor() > 255 or snake.segments[0].ycor() < -255:
+    elif snake.segments[0].ycor() > 280 or snake.segments[0].ycor() < -280:
+        game_over = True
+    
+    if snake.collision_verifier():
         game_over = True
     
     if not was_food_created:
@@ -118,9 +133,7 @@ while not game_over:
     else:
         s_head = snake.segments[0]
         if food.collision_verifier(s_head, food):
-            # remove food
             food.location_randomizer()
-            # adiciona +1 turtle
             snake.add_snake_segment()
         
     screen.onkeypress(goUp, "w")
@@ -155,9 +168,12 @@ while not game_over:
     screen.update()
     time.sleep(0.25)
 
-## COLLISION WITH SNAKE'S OWN BODY 
-sys = Turtle()
-sys.write("GAME OVER", align="center", font=("Arial", 24, "bold"))    
+# GAME OVER MESSAGE
 
+sys = Turtle()
+sys.goto(0,20)
+sys.write("GAME OVER", align="center", font=("Arial", 24, "bold"))    
+sys.goto(0,-20)
+sys.write(f"Final size: {len(snake.segments) * distance}px", align="center", font=("Arial", 18, "normal"))
 
 screen.exitonclick()
