@@ -67,4 +67,28 @@ player = Player()
 screen.onkeypress(player.move_up, "Up")
 screen.onkeypress(player.move_down, "Down")
 
+# OPPONENT
+
+class Opponent(Player):
+    def __init__(self):
+        super().__init__()
+        self.goto(x=right_defense, y=0)
+        self.direction = "down"  
+        screen.update()      
+        
+    def movement(self):
+        match self.direction:
+            case "up":
+                self.goto(x=right_defense, y=self.ycor() + opponent_distance)
+                screen.update()
+                if self.ycor() > 219:
+                    self.direction = "down"
+            case "down":
+                self.goto(x=right_defense, y=self.ycor() - opponent_distance)
+                screen.update()
+                if self.ycor() < -210:
+                    self.direction = "up"
+        
+opponent = Opponent()
+
 screen.exitonclick()
