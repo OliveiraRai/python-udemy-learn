@@ -1,6 +1,7 @@
 from turtle import Screen, Turtle
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 
 # SETUP
@@ -16,6 +17,7 @@ screen.tracer(0)
 player = Paddle(350)
 opponent = Paddle(-350)
 ball = Ball()
+scoreboard = Scoreboard()
 
 # MOVEMENT
 
@@ -38,24 +40,26 @@ while not game_over:
     time.sleep(0.0016)
     screen.update()
     
-    if player.score == max_score:
+    if scoreboard.r_score == max_score:
         game_over = True
         player_2_won = True
-    elif opponent.score == max_score:
+    elif scoreboard.l_score == max_score:
         game_over = True
         player_1_won = True
     
     if ball.xcor() > 380 or ball.xcor() < -385:
         if ball_was_hit_by_player:
-            player.score += 1
-            print("Player 2 score a point!")
-            ball.reallocate()
+            scoreboard.r_score += 1
+            scoreboard.update_score()
+            ball_was_hit_by_player = False
+            ball.reallocate(was_hit=ball_was_hit_by_player)
         elif ball_was_hit_by_opponnet:
-            opponent.score += 1
-            print("Player 1 score a point!")
-            ball.reallocate()
+            scoreboard.l_score += 1
+            scoreboard.update_score()
+            ball_was_hit_by_opponnet = False
+            ball.reallocate(was_hit=ball_was_hit_by_opponnet)
         else:
-            ball.reallocate()
+            ball.reallocate(was_hit=None)
         
     if player.detect_collision(object=ball):
         ball.change_direction()

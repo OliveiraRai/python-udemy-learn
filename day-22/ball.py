@@ -34,18 +34,24 @@ class Ball(Turtle):
     def change_direction(self):
         self.setheading(self.heading() - 90)
         
-    def reallocate(self):
+    def reallocate(self, was_hit: bool | None):
         self.home()
-        self.direction = random.choice(self.directions)
-        self.position = random.choice(self.positions)
-        if self.direction == "right":
-            if self.position == "top":
-                self.left(45)
-            else:
-                self.right(45)
+        if was_hit:
+            pass
         else:
-            self.seth(180)
-            if self.position == "top":
-                self.right(45)
+            if self.direction == "right":
+                self.direction = "left"
+                self.seth(180)
+                self.position = random.choice(self.positions)
+                if self.position == "top":
+                    self.left(45)
+                else:
+                    self.right(45)
             else:
-                self.left(45)
+                self.direction = "right"
+                self.seth(0)
+                self.position = random.choice(self.positions)
+                if self.position == "top":
+                    self.right(45)
+                else:
+                    self.left(45)
