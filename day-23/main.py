@@ -18,7 +18,7 @@ game_over = False
 while not game_over:
     screen.update()
     
-    if player.ycor() > 280:
+    if obstacle.detect_collision(player):
         game_over = True
     
     obstacle.move()
