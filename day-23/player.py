@@ -9,4 +9,7 @@ class Player(Turtle):
         self.goto(0,-280)
         
     def move_forwards(self):
-        self.forward(10)
+        self.forward(4)
+        
+    def reallocate(self):
+        self.goto(0,-280)

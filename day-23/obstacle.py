@@ -1,21 +1,18 @@
 from turtle import Turtle
-from random import randint
 from player import Player
 
-random_y = randint(-250,250)
-
 class Obstacle(Turtle):
-    def __init__(self):
+    def __init__(self, y):
         super().__init__()
         self.stretch_wid = 1
         self.stretch_len = 2
         self.shape("square")
         self.penup()
         self.shapesize(stretch_wid=self.stretch_wid,stretch_len=self.stretch_len,outline=1)
-        self.goto(414,random_y)
+        self.goto(414,y)
         
-    def move(self):
-        new_x = self.xcor() - 1
+    def move(self, speed):
+        new_x = self.xcor() - (speed + 2)
         if not self.xcor() < -418:
             self.setx(new_x)
             
@@ -32,5 +29,10 @@ class Obstacle(Turtle):
         y_hit = abs(object.ycor() - self.ycor()) < y_limit
         
         if x_hit and y_hit:
+            return True
+        return False
+    
+    def out_of_screen(self):
+        if self.xcor() < -414:
             return True
         return False
