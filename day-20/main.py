@@ -22,7 +22,6 @@ screen.title("Snake Game")
 class Snake():
     def __init__(self, starting_length=3):
         self.segments = []
-        super().__init__()
         for _ in range(starting_length):
             new_segment = Turtle("square")
             new_segment.penup()
